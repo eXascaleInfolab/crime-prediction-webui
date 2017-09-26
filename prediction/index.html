@@ -85,10 +85,10 @@
 	
     <div id="floatingleft-panel">
 		<div class="row">
-		    <div class="label label-default">Month Selector</div>
+		    <div class="label label-default ng-cloak"><span ng-show="gradient=='pred'">Week Selector</span><span ng-show="gradient=='hist'">Month Selector</span></div>
 			<div class="btn-group ng-cloak" role="group">
 			  <a href="#" class="btn btn-default btn-sm" ng-show="gradient=='hist'" ng-class="{'btn-primary': month==x && gradient=='pred', 'btn-success': month==x && gradient=='hist'}" ng-repeat="x in hist.months" ng-click="changeMonth(x)">{{x}}{{hist.years[$index]}}</a>
-			  <a href="#" class="btn btn-default btn-sm" ng-show="gradient=='pred'" ng-class="{'btn-primary': month==x && gradient=='pred', 'btn-success': month==x && gradient=='hist'}" ng-repeat="x in pred.months" ng-click="changeMonth(x)">{{x}}{{pred.years[$index]}}</a>
+			  <a href="#" class="btn btn-default btn-sm" ng-show="gradient=='pred'" ng-class="{'btn-primary': month==x && gradient=='pred', 'btn-success': month==x && gradient=='hist'}" ng-repeat="x in pred.months" ng-click="changeMonth(x)">{{currentweeklabel}}</a>
 			</div><!-- /input-group -->
 		</div><!-- /.row -->
 	</div>
@@ -134,6 +134,14 @@
 			//pred0.setMonth(pred0.getMonth()+1);
 		}
 		
+
+		var curr = new Date(); // get current date
+		var first = curr.getDate() - curr.getDay() + 1;
+		var last = first + 6; 
+		var thismonday = new Date(curr.setDate(first));
+		var thissunday = new Date(curr.setDate(last));
+		$scope.currentweeklabel = "Week " + $filter('date')(thismonday,"dd/MMM/y") + " - " + $filter('date')(thissunday,"dd/MMM/y");
+
 		angular.element(document).ready(function () {
 			$scope.month = $scope.pred.months[0];
 			$scope.offense = $scope.offenseTypes[0];
