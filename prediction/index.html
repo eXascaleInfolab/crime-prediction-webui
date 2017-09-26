@@ -12,6 +12,14 @@
 <!-- AngularJS v1.5.8 -->
 <script src="js/angular.min.js"></script>	
 <link rel="stylesheet" href="style.css">
+<style>
+.btn-success {
+text-shadow: none;
+}
+.btn-primary {
+text-shadow: none;
+}
+</style>
 </head>
 
 <body ng-app="nycApp" ng-controller="nycContr">
@@ -85,7 +93,7 @@
 	
     <div id="floatingleft-panel">
 		<div class="row">
-		    <div class="label label-default ng-cloak"><span ng-show="gradient=='pred'">Week Selector</span><span ng-show="gradient=='hist'">Month Selector</span></div>
+		    <div class="label label-default ng-cloak"><span ng-show="gradient=='pred'">Current week</span><span ng-show="gradient=='hist'">Month Selector</span></div>
 			<div class="btn-group ng-cloak" role="group">
 			  <a href="#" class="btn btn-default btn-sm" ng-show="gradient=='hist'" ng-class="{'btn-primary': month==x && gradient=='pred', 'btn-success': month==x && gradient=='hist'}" ng-repeat="x in hist.months" ng-click="changeMonth(x)">{{x}}{{hist.years[$index]}}</a>
 			  <a href="#" class="btn btn-default btn-sm" ng-show="gradient=='pred'" ng-class="{'btn-primary': month==x && gradient=='pred', 'btn-success': month==x && gradient=='hist'}" ng-repeat="x in pred.months" ng-click="changeMonth(x)">{{currentweeklabel}}</a>
